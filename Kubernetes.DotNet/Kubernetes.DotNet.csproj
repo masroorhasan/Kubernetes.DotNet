@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Api\*.cs" />
-    <Compile Include="Client\*.cs" />
-    <Compile Include="Model\*.cs" />
+    <Compile Include="Endpoints\*.cs" />
+    <Compile Include="HttpClient\*.cs" />
+    <Compile Include="Models\*.cs" />
   </ItemGroup>
 </Project>

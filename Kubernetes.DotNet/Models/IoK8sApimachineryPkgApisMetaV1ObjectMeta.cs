@@ -34,7 +34,7 @@ namespace Kubernetes.DotNet.Model {
     /// <value>CreationTimestamp is a timestamp representing the server time when this object was created. It is not guaranteed to be set in happens-before order across separate operations. Clients may not set this value. It is represented in RFC3339 form and is in UTC.  Populated by the system. Read-only. Null for lists. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata</value>
     [DataMember(Name="creationTimestamp", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "creationTimestamp")]
-    public DateTime CreationTimestamp { get; set; }
+    public DateTime? CreationTimestamp { get; set; }
 
     /// <summary>
     /// Number of seconds allowed for this object to gracefully terminate before it will be removed from the system. Only set when deletionTimestamp is also set. May only be shortened. Read-only.
@@ -51,7 +51,7 @@ namespace Kubernetes.DotNet.Model {
     [DataMember(Name="deletionTimestamp", EmitDefaultValue=false)]
     [JsonProperty(PropertyName = "deletionTimestamp")]
     // public IoK8sApimachineryPkgApisMetaV1Time DeletionTimestamp { get; set; }
-    public DateTime DeletionTimestamp { get; set; }
+    public DateTime? DeletionTimestamp { get; set; }
 
     /// <summary>
     /// Must be empty before the object is deleted from the registry. Each entry is an identifier for the responsible component that will remove the entry from the list. If the deletionTimestamp of the object is non-nil, entries in this list can only be removed.
