@@ -1,0 +1,8 @@
+/Users/masroorhasan/Documents/dev/kubernetes/dotnetclient/Kubernetes.DotNet/obj/Debug/netstandard2.0/Kubernetes.DotNet.csproj.CoreCompileInputs.cache
+/Users/masroorhasan/Documents/dev/kubernetes/dotnetclient/Kubernetes.DotNet/obj/Debug/netstandard2.0/Kubernetes.DotNet.AssemblyInfoInputs.cache
+/Users/masroorhasan/Documents/dev/kubernetes/dotnetclient/Kubernetes.DotNet/obj/Debug/netstandard2.0/Kubernetes.DotNet.AssemblyInfo.cs
+/Users/masroorhasan/Documents/dev/kubernetes/dotnetclient/Kubernetes.DotNet/bin/Debug/netstandard2.0/Kubernetes.DotNet.deps.json
+/Users/masroorhasan/Documents/dev/kubernetes/dotnetclient/Kubernetes.DotNet/bin/Debug/netstandard2.0/Kubernetes.DotNet.dll
+/Users/masroorhasan/Documents/dev/kubernetes/dotnetclient/Kubernetes.DotNet/bin/Debug/netstandard2.0/Kubernetes.DotNet.pdb
+/Users/masroorhasan/Documents/dev/kubernetes/dotnetclient/Kubernetes.DotNet/obj/Debug/netstandard2.0/Kubernetes.DotNet.dll
+/Users/masroorhasan/Documents/dev/kubernetes/dotnetclient/Kubernetes.DotNet/obj/Debug/netstandard2.0/Kubernetes.DotNet.pdb
