@@ -14,5 +14,9 @@
     <Compile Include="Endpoints\*.cs" />
     <Compile Include="HttpClient\*.cs" />
     <Compile Include="Models\*.cs" />
+    
+    <Compile Include="IKubernetesClient.cs" />
+    <Compile Include="KubernetesClient.cs" />
+    <Compile Include="KubernetesClientConfiguration.cs" />
   </ItemGroup>
 </Project>

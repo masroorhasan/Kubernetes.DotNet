@@ -5,16 +5,20 @@ Note: Usage is limited to local Minikube cluster (proxy to API server).
 
 ## Usage
 
-Uses generated API to request resources. Resource bindings are available under Models.
+Initialize the client like the following:
+```csharp
+using Kubernetes.DotNet;
+
+// For Minikube cluster proxy running on port 8001
+IKubernetesClient client = new KubernetesClientConfiguration("http://127.0.0.1:8001").CreateClientInstance();
+```
 
 ### Pods
 
-**Fetching all Pods in namespace** 
+**Fetch all Pods** 
 
 ```csharp
-// Minikube cluster proxy running on port 8001
-Core_v1Api coreApi = new Core_v1Api("http://127.0.0.1:8001");
-IoK8sKubernetesPkgApiV1PodList podList = coreApi.ListCoreV1NamespacedPod("default", null, null, null, null, null, null, null);
+IoK8sKubernetesPkgApiV1PodList podList = client.CoreApi.ListCoreV1NamespacedPod("default", null, null, null, null, null, null, null);
 foreach (IoK8sKubernetesPkgApiV1Pod pod in podList.Items)
     Console.WriteLine($"Pod name={pod.Metadata.Name}, object={pod.ToString()}");
 ```
@@ -22,9 +26,7 @@ foreach (IoK8sKubernetesPkgApiV1Pod pod in podList.Items)
 **Create a Pod** 
 
 ```csharp
-// Create a Pod in 'default' namespace
-Core_v1Api coreApi = new Core_v1Api("http://127.0.0.1:8001");
-coreApi.CreateCoreV1NamespacedPod(
+client.CoreApi.CreateCoreV1NamespacedPod(
     "default", 
     new IoK8sKubernetesPkgApiV1Pod
     {
