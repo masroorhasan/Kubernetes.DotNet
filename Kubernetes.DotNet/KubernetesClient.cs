@@ -1,5 +1,10 @@
 using System;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Http;
+using System.Net.Security;
 using Kubernetes.DotNet.Api;
+using Kubernetes.DotNet.Client;
 
 namespace Kubernetes.DotNet
 {
@@ -40,28 +45,56 @@ namespace Kubernetes.DotNet
         
         public IVersionApi VersionApi { get; }
 
+        private ApiClient httpClient;
+
+        /// <summary>
+        /// The internal <see cref="KubernetesClient"/> ctr.
+        /// </summary>
+        /// <param name="configuration">The <see cref="KubernetesClientConfiguration"/>.</param>
         internal KubernetesClient(KubernetesClientConfiguration configuration)
         {
             if (null == configuration)
                 throw new ApplicationException($"Missing required argument {nameof(configuration)}");
             this.Configuration = configuration;
 
+            // Set up the http client
+            ApiClient httpClient = new ApiClient(configuration.MasterUrl);
+            // httpClient.HttpClient = this.SetupHttpClient();
+            // httpClient.HttpClient.BaseAddress = new Uri(configuration.MasterUrl);
+
             // Initialize endpoints
-            this.ApiRegistrationApi = new Apiregistration_v1beta1Api(configuration.MasterUrl);
-            this.AppsApi = new Apps_v1beta1Api(configuration.MasterUrl);
-            this.AuthenticationApi = new Authentication_v1Api(configuration.MasterUrl);
-            this.AuthorizationApi = new Authorization_v1Api(configuration.MasterUrl);
-            this.AutoscalingApi = new Autoscaling_v1Api(configuration.MasterUrl);
-            this.BatchApi = new Batch_v1Api(configuration.MasterUrl);
-            this.CertificatesApi = new Certificates_v1beta1Api(configuration.MasterUrl);
-            this.CoreApi = new Core_v1Api(configuration.MasterUrl);
-            this.ExtensionsApi = new Extensions_v1beta1Api(configuration.MasterUrl);
-            this.LogsApi = new LogsApi(configuration.MasterUrl);
-            this.NetworkingApi = new Networking_v1Api(configuration.MasterUrl);
-            this.PolicyApi = new Policy_v1beta1Api(configuration.MasterUrl);
-            this.RoleBasedControlAuthorizationApi = new RbacAuthorization_v1beta1Api(configuration.MasterUrl);
-            this.StorageApi = new Storage_v1Api(configuration.MasterUrl);
-            this.VersionApi = new VersionApi(configuration.MasterUrl);
+            this.ApiRegistrationApi = new Apiregistration_v1beta1Api(httpClient);
+            this.AppsApi = new Apps_v1beta1Api(httpClient);
+            this.AuthenticationApi = new Authentication_v1Api(httpClient);
+            this.AuthorizationApi = new Authorization_v1Api(httpClient);
+            this.AutoscalingApi = new Autoscaling_v1Api(httpClient);
+            this.BatchApi = new Batch_v1Api(httpClient);
+            this.CertificatesApi = new Certificates_v1beta1Api(httpClient);
+            this.CoreApi = new Core_v1Api(httpClient);
+            this.ExtensionsApi = new Extensions_v1beta1Api(httpClient);
+            this.LogsApi = new LogsApi(httpClient);
+            this.NetworkingApi = new Networking_v1Api(httpClient);
+            this.PolicyApi = new Policy_v1beta1Api(httpClient);
+            this.RoleBasedControlAuthorizationApi = new RbacAuthorization_v1beta1Api(httpClient);
+            this.StorageApi = new Storage_v1Api(httpClient);
+            this.VersionApi = new VersionApi(httpClient);
+        }
+
+        /// <summary>
+        /// Sets up the DotNet HttpClient.
+        /// </summary>
+        /// <returns>The HttpClient.</returns>
+        private HttpClient SetupHttpClient()
+        {
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ClientCertificateOptions = ClientCertificateOption.Manual;
+            handler.SslProtocols = System.Security.Authentication.SslProtocols.Tls12;
+
+            // MacOS: System.PlatformNotSupportedException
+            // $NOTE: Because in macOS, the default libcurl built against SecureTransport doesn't provide the callback 
+            handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+            handler.ClientCertificates.Add(new X509Certificate2(this.Configuration.ClientCertificateKey, this.Configuration.ClientCertificatePassword));
+            return new HttpClient(handler);
         }
     }
 }

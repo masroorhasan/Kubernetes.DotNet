@@ -9,8 +9,8 @@ Initialize the client like the following:
 ```csharp
 using Kubernetes.DotNet;
 
-// For Minikube cluster proxy running on port 8001
-IKubernetesClient client = new KubernetesClientConfiguration("http://127.0.0.1:8001").CreateClientInstance();
+// Override master url with minikube cluster's proxy url
+IKubernetesClient client = new KubernetesClientConfiguration() { MasterUrl = "http://127.0.0.1:8001" }.CreateClientInstance();
 ```
 
 ### Pods

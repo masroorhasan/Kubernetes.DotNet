@@ -1,4 +1,8 @@
 using System;
+using System.IO;
+using System.Linq;
+using Kubernetes.DotNet.Config;
+using YamlDotNet.Serialization;
 
 namespace Kubernetes.DotNet
 {
@@ -7,31 +11,42 @@ namespace Kubernetes.DotNet
     /// </summary>
     public class KubernetesClientConfiguration
     {
-        public string MasterUrl => this.masterUrl;
-        public string ApiVersion => this.apiVersion;
-        public string Namespace => this._namespace;
+        public string MasterUrl {get; set;}
+        public string ApiVersion {get; set;}
+        public string CurrentContext {get; set;}
+        public string UserName {get; set;}
+        public string ClientCertificateKey {get; set;}
+        public string ClientCertificatePassword {get; set;}
 
-        private string masterUrl;
-        private string apiVersion;
-        private string _namespace;
+        private KubeConfig kubeConfig;
 
-        public KubernetesClientConfiguration(string masterUrl)
-            : this(masterUrl, "v1", "default")    
+        /// <summary>
+        /// The <see cref="KubernetesClientConfiguration"/> ctr.
+        /// Sets up configuration from /.kube/config.
+        /// </summary>
+        public KubernetesClientConfiguration()
         {
+            this.kubeConfig = ConfigUtils.ParseKubeConfig();
         }
 
-        public KubernetesClientConfiguration (string masterUrl, string apiVersion, string _namespace)
-        {
-            if (null == masterUrl || string.IsNullOrWhiteSpace(masterUrl))
-                throw new ApplicationException($"Missing required field {nameof(masterUrl)}.");
-
-            this.masterUrl = masterUrl;
-            this.apiVersion = apiVersion;
-            this._namespace = _namespace;
-        }
-
+        /// <summary>
+        /// Creates an instance of <see cref="IKubernetesClient"/>.
+        /// </summary>
+        /// <returns>A k8s client instance.</returns>
         public IKubernetesClient CreateClientInstance()
         {
+            if (string.IsNullOrWhiteSpace(this.MasterUrl))
+                this.MasterUrl = this.kubeConfig.Clusters?.FirstOrDefault().ClusterData["server"];
+
+            if (string.IsNullOrWhiteSpace(this.ApiVersion))
+                this.ApiVersion = this.kubeConfig.ApiVersion;
+
+            if (string.IsNullOrWhiteSpace(this.CurrentContext))
+                this.CurrentContext = this.kubeConfig.CurrentContext;
+
+            if (string.IsNullOrWhiteSpace(this.UserName))
+                this.UserName = this.kubeConfig.Users?.FirstOrDefault().Name;
+            
             return new KubernetesClient(this);
         }
     }
