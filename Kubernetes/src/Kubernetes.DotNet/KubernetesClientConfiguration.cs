@@ -39,6 +39,16 @@ namespace Kubernetes.DotNet
         public string ClientCertificatePassword { get; set; }
 
         /// <summary>
+        /// The Kubernetes <see cref="Cluster"/>.
+        /// </summary>
+        public Cluster Cluster { get; set; }
+
+        /// <summary>
+        /// The Kubernetes <see cref="User"/>.
+        /// </summary>
+        public User User { get; set; }
+        
+        /// <summary>
         /// The <see cref="KubeConfig"/> object.
         /// </summary>
         private KubeConfig kubeConfig;
@@ -69,6 +79,12 @@ namespace Kubernetes.DotNet
 
             if (string.IsNullOrWhiteSpace(this.UserName))
                 this.UserName = this.kubeConfig.Users?.FirstOrDefault().Name;
+
+            if (null != this.kubeConfig.Clusters)
+                this.Cluster = this.kubeConfig.Clusters?.FirstOrDefault();
+
+            if (null != this.kubeConfig.Users)
+                this.User = this.kubeConfig.Users?.FirstOrDefault();
 
             return new KubernetesClient(this);
         }

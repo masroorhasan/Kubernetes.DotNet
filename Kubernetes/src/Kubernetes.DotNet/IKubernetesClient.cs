@@ -11,7 +11,7 @@ namespace Kubernetes.DotNet
         /// <summary>
         /// The <see cref="KubernetesClientConfiguration"/>.
         /// </summary>
-        KubernetesClientConfiguration Configuration { get; }
+        KubernetesClientConfiguration ClientConfiguration { get; }
 
         /// <summary>
         /// The admissions control API endpoint.

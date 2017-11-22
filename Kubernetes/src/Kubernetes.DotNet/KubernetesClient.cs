@@ -1,6 +1,9 @@
 ﻿using System;
 using Kubernetes.DotNet.Api;
 using Kubernetes.DotNet.Client;
+using RestSharp;
+
+using System.Security.Cryptography.X509Certificates;
 
 namespace Kubernetes.DotNet
 {
@@ -12,7 +15,7 @@ namespace Kubernetes.DotNet
         /// <summary>
         /// The <see cref="KubernetesClientConfiguration"/>.
         /// </summary>
-        public KubernetesClientConfiguration Configuration { get; }
+        public KubernetesClientConfiguration ClientConfiguration { get; }
 
         /// <summary>
         /// The admissions control API endpoint.
@@ -102,32 +105,41 @@ namespace Kubernetes.DotNet
         /// <summary>
         /// The internal <see cref="KubernetesClient"/> ctr.
         /// </summary>
-        /// <param name="configuration">The <see cref="KubernetesClientConfiguration"/>.</param>
-        internal KubernetesClient(KubernetesClientConfiguration configuration)
+        /// <param name="clientConfiguration">The <see cref="KubernetesClientConfiguration"/>.</param>
+        internal KubernetesClient(KubernetesClientConfiguration clientConfiguration)
         {
-            if (null == configuration)
-                throw new ApplicationException($"Missing required argument {nameof(configuration)}");
-            this.Configuration = configuration;
+            // Client configuration must be specified
+            if (null == clientConfiguration)
+                throw new ApplicationException($"Missing required argument {nameof(clientConfiguration)}");
+            this.ClientConfiguration = clientConfiguration;
 
-            // Set up the http client
-            ApiClient httpClient = new ApiClient(configuration.MasterUrl);
+            // Create client credentials
+            X509Certificate2 certificate = new X509Certificate2();
+            certificate.Import(clientConfiguration.ClientCertificatePath, clientConfiguration.ClientCertificatePassword, X509KeyStorageFlags.DefaultKeySet);
 
+            // Set up the api client
+            ApiClient apiClient = new ApiClient(clientConfiguration.MasterUrl);
+            apiClient.RestClient.ClientCertificates = new X509CertificateCollection() { certificate };
+
+            // Configuration
+            Configuration apiClientConfiguration = new Configuration(apiClient);
+            
             // Initialize endpoints
-            this.ApiRegistrationApi = new Apiregistration_v1beta1Api(configuration.MasterUrl);
-            this.AppsApi = new Apps_v1beta1Api(configuration.MasterUrl);
-            this.AuthenticationApi = new Authentication_v1Api(configuration.MasterUrl);
-            this.AuthorizationApi = new Authorization_v1Api(configuration.MasterUrl);
-            this.AutoscalingApi = new Autoscaling_v1Api(configuration.MasterUrl);
-            this.BatchApi = new Batch_v1Api(configuration.MasterUrl);
-            this.CertificatesApi = new Certificates_v1beta1Api(configuration.MasterUrl);
-            this.CoreApi = new Core_v1Api(configuration.MasterUrl);
-            this.ExtensionsApi = new Extensions_v1beta1Api(configuration.MasterUrl);
-            this.LogsApi = new LogsApi(configuration.MasterUrl);
-            this.NetworkingApi = new Networking_v1Api(configuration.MasterUrl);
-            this.PolicyApi = new Policy_v1beta1Api(configuration.MasterUrl);
-            this.RbacAuthorizationApi = new RbacAuthorization_v1beta1Api(configuration.MasterUrl);
-            this.StorageApi = new Storage_v1Api(configuration.MasterUrl);
-            this.VersionApi = new VersionApi(configuration.MasterUrl);
+            this.ApiRegistrationApi = new Apiregistration_v1beta1Api(apiClientConfiguration);
+            this.AppsApi = new Apps_v1beta1Api(apiClientConfiguration);
+            this.AuthenticationApi = new Authentication_v1Api(apiClientConfiguration);
+            this.AuthorizationApi = new Authorization_v1Api(apiClientConfiguration);
+            this.AutoscalingApi = new Autoscaling_v1Api(apiClientConfiguration);
+            this.BatchApi = new Batch_v1Api(apiClientConfiguration);
+            this.CertificatesApi = new Certificates_v1beta1Api(apiClientConfiguration);
+            this.CoreApi = new Core_v1Api(apiClientConfiguration);
+            this.ExtensionsApi = new Extensions_v1beta1Api(apiClientConfiguration);
+            this.LogsApi = new LogsApi(apiClientConfiguration);
+            this.NetworkingApi = new Networking_v1Api(apiClientConfiguration);
+            this.PolicyApi = new Policy_v1beta1Api(apiClientConfiguration);
+            this.RbacAuthorizationApi = new RbacAuthorization_v1beta1Api(apiClientConfiguration);
+            this.StorageApi = new Storage_v1Api(apiClientConfiguration);
+            this.VersionApi = new VersionApi(apiClientConfiguration);
         }
     }
 }
