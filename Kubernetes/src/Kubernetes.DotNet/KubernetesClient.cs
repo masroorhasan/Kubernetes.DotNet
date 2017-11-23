@@ -1,9 +1,6 @@
 ﻿using System;
 using Kubernetes.DotNet.Api;
 using Kubernetes.DotNet.Client;
-using RestSharp;
-
-using System.Security.Cryptography.X509Certificates;
 
 namespace Kubernetes.DotNet
 {
@@ -12,11 +9,6 @@ namespace Kubernetes.DotNet
     /// </summary>
     public class KubernetesClient : IKubernetesClient
     {
-        /// <summary>
-        /// The <see cref="KubernetesClientConfiguration"/>.
-        /// </summary>
-        public KubernetesClientConfiguration ClientConfiguration { get; }
-
         /// <summary>
         /// The admissions control API endpoint.
         /// </summary>
@@ -103,27 +95,15 @@ namespace Kubernetes.DotNet
         public IVersionApi VersionApi { get; }
         
         /// <summary>
-        /// The internal <see cref="KubernetesClient"/> ctr.
+        /// 
         /// </summary>
-        /// <param name="clientConfiguration">The <see cref="KubernetesClientConfiguration"/>.</param>
-        internal KubernetesClient(KubernetesClientConfiguration clientConfiguration)
+        /// <param name="apiClientConfiguration"></param>
+        internal KubernetesClient(Configuration apiClientConfiguration)
         {
-            // Client configuration must be specified
-            if (null == clientConfiguration)
-                throw new ApplicationException($"Missing required argument {nameof(clientConfiguration)}");
-            this.ClientConfiguration = clientConfiguration;
+            //Configuration apiClientConfiguration = new Configuration(apiClient);
+            if (null == apiClientConfiguration)
+                throw new ApplicationException($"Missing required argument {nameof(apiClientConfiguration)}");
 
-            // Create client credentials
-            X509Certificate2 certificate = new X509Certificate2();
-            certificate.Import(clientConfiguration.ClientCertificatePath, clientConfiguration.ClientCertificatePassword, X509KeyStorageFlags.DefaultKeySet);
-
-            // Set up the api client
-            ApiClient apiClient = new ApiClient(clientConfiguration.MasterUrl);
-            apiClient.RestClient.ClientCertificates = new X509CertificateCollection() { certificate };
-
-            // Configuration
-            Configuration apiClientConfiguration = new Configuration(apiClient);
-            
             // Initialize endpoints
             this.ApiRegistrationApi = new Apiregistration_v1beta1Api(apiClientConfiguration);
             this.AppsApi = new Apps_v1beta1Api(apiClientConfiguration);

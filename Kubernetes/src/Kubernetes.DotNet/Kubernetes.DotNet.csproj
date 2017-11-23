@@ -110,11 +110,13 @@ OpenAPI spec version: v1.7.10
     <Compile Include="Client\ExceptionFactory.cs" />
     <Compile Include="Client\IApiAccessor.cs" />
     <Compile Include="Client\SwaggerDateConverter.cs" />
-    <Compile Include="Config\ConfigUtils.cs" />
+    <Compile Include="Config\AuthType.cs" />
+    <Compile Include="Config\SslClientConfiguration.cs" />
     <Compile Include="Config\KubeConfig.cs" />
+    <Compile Include="Config\IClientConfiguration.cs" />
+    <Compile Include="Config\KubeConfigClientConfiguration.cs" />
     <Compile Include="IKubernetesClient.cs" />
     <Compile Include="KubernetesClient.cs" />
-    <Compile Include="KubernetesClientConfiguration.cs" />
     <Compile Include="Model\AppsV1beta1Deployment.cs" />
     <Compile Include="Model\AppsV1beta1DeploymentCondition.cs" />
     <Compile Include="Model\AppsV1beta1DeploymentList.cs" />

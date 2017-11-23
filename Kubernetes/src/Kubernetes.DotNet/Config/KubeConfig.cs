@@ -64,10 +64,16 @@ namespace Kubernetes.DotNet.Config
         public string Name { get; set; }
 
         /// <summary>
-        /// Data associated with cluster as key value pairs.
+        /// 
         /// </summary>
-        [YamlMember(Alias = "cluster")]
-        public Dictionary<string, string> ClusterData { get; set; }
+        [YamlMember(Alias = "server")]
+        public string Server { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [YamlMember(Alias = "certificate-authority-data")]
+        public string CertificateAuthorityData { get; set; }
     }
 
     /// <summary>
@@ -81,11 +87,11 @@ namespace Kubernetes.DotNet.Config
         [YamlMember(Alias = "name")]
         public string Name { get; set; }
 
-        /// <summary>
-        /// Data associated with context as key value pairs.
-        /// </summary>
-        [YamlMember(Alias = "context")]
-        public Dictionary<string, string> ContextData { get; set; }
+        [YamlMember(Alias = "cluster")]
+        public string Cluster { get; set; }
+
+        [YamlMember(Alias = "user")]
+        public string User { get; set; }
     }
 
     /// <summary>
@@ -100,9 +106,39 @@ namespace Kubernetes.DotNet.Config
         public string Name { get; set; }
 
         /// <summary>
-        /// Data associated with context as key value pairs.
+        /// 
         /// </summary>
-        [YamlMember(Alias = "user")]
-        public Dictionary<string, string> UserData { get; set; }
+        [YamlMember(Alias = "client-certificate-data")]
+        public string ClientCertificateData { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [YamlMember(Alias = "client-key-data")]
+        public string ClientKeyData { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [YamlMember(Alias = "token")]
+        public String Token { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [YamlMember(Alias = "username")]
+        public String UserName { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [YamlMember(Alias = "password")]
+        public String Password { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [YamlMember(Alias = "auth-provider")]
+        public Dictionary<string, dynamic> AuthProvider { get; set; }
     }
 }
