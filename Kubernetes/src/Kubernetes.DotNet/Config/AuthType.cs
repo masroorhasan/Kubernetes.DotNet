@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Kubernetes.DotNet.Config
+﻿namespace Kubernetes.DotNet.Config
 {
     /// <summary>
-    /// 
+    /// The authentication types.
     /// </summary>
     public enum AuthType
     {

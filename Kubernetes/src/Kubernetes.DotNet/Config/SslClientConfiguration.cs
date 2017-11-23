@@ -5,7 +5,7 @@ using Kubernetes.DotNet.Client;
 namespace Kubernetes.DotNet.Config
 {
     /// <summary>
-    /// 
+    /// The <see cref="IClientConfiguration"/> implementation that uses SSL authentication.
     /// </summary>
     public class SslClientConfiguration : IClientConfiguration
     {
@@ -19,11 +19,6 @@ namespace Kubernetes.DotNet.Config
         /// The client certificate.
         /// </summary>
         public X509Certificate2 Certificate { get; set; }
-
-        /// <summary>
-        /// Skip TLS verification.
-        /// </summary>
-        public bool SkipTlsVerify { get; set; }
         #endregion
         
         /// <summary>
@@ -38,10 +33,10 @@ namespace Kubernetes.DotNet.Config
         /// </summary>
         /// <param name="authType">The authentication type.</param>
         /// <returns>Instance of <see cref="IKubernetesClient"/>.</returns>
-        public IKubernetesClient CreateClient(AuthType authType)
+        public IKubernetesClient CreateClient(AuthType authType = AuthType.SSLAuth)
         {
             if (AuthType.SSLAuth != authType)
-                throw new Exception($"Invalid auth type for {nameof(SslClientConfiguration)}.");
+                throw new Exception($"Invalid auth type {authType} for {nameof(SslClientConfiguration)}.");
 
             if (null == this.MasterUrl)
                 throw new ApplicationException($"Missing required argument {nameof(this.MasterUrl)}");
