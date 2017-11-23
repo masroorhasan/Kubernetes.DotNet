@@ -67,7 +67,26 @@ namespace Kubernetes.DotNet.Config
         /// Data associated with cluster as key value pairs.
         /// </summary>
         [YamlMember(Alias = "cluster")]
-        public Dictionary<string, string> ClusterData { get; set; }
+        public ClusterData ClusterData { get; set; }
+    }
+
+    /// <summary>
+    /// The data associated with the <see cref="Cluster"/>.
+    /// </summary>
+    public class ClusterData
+    {
+        /// <summary>
+        /// The server.
+        /// </summary>
+        [YamlMember(Alias = "server")]
+        public string Server { get; set; }
+
+        /// <summary>
+        /// The CA data.
+        /// </summary>
+        [YamlMember(Alias = "certificate-authority-data")]
+        public string CertificateAuthorityData { get; set; }
+
     }
 
     /// <summary>
@@ -85,7 +104,25 @@ namespace Kubernetes.DotNet.Config
         /// Data associated with context as key value pairs.
         /// </summary>
         [YamlMember(Alias = "context")]
-        public Dictionary<string, string> ContextData { get; set; }
+        public ContextData ContextData { get; set; }
+    }
+
+    /// <summary>
+    /// The data associated with the <see cref="Context"/>.
+    /// </summary>
+    public class ContextData
+    {
+        /// <summary>
+        /// The cluster.
+        /// </summary>
+        [YamlMember(Alias = "cluster")]
+        public string Cluster { get; set; }
+
+        /// <summary>
+        /// The user.
+        /// </summary>
+        [YamlMember(Alias = "user")]
+        public string User { get; set; }
     }
 
     /// <summary>
@@ -103,6 +140,42 @@ namespace Kubernetes.DotNet.Config
         /// Data associated with context as key value pairs.
         /// </summary>
         [YamlMember(Alias = "user")]
-        public Dictionary<string, string> UserData { get; set; }
+        public UserData UserData { get; set; }
+    }
+
+    /// <summary>
+    /// The data associated with the <see cref="User"/>.
+    /// </summary>
+    public class UserData
+    {
+        /// <summary>
+        /// The client certificate data.
+        /// </summary>
+        [YamlMember(Alias = "client-certificate-data")]
+        public string ClientCertificateData { get; set; }
+
+        /// <summary>
+        /// The client key data.
+        /// </summary>
+        [YamlMember(Alias = "client-key-data")]
+        public string ClientKeyData { get; set; }
+
+        /// <summary>
+        /// The token.
+        /// </summary>
+        [YamlMember(Alias = "token")]
+        public String Token { get; set; }
+
+        /// <summary>
+        /// The user name.
+        /// </summary>
+        [YamlMember(Alias = "username")]
+        public String UserName { get; set; }
+
+        /// <summary>
+        /// The password.
+        /// </summary>
+        [YamlMember(Alias = "password")]
+        public String Password { get; set; }
     }
 }

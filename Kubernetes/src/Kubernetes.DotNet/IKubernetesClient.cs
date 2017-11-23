@@ -9,11 +9,6 @@ namespace Kubernetes.DotNet
     public interface IKubernetesClient
     {
         /// <summary>
-        /// The <see cref="KubernetesClientConfiguration"/>.
-        /// </summary>
-        KubernetesClientConfiguration Configuration { get; }
-
-        /// <summary>
         /// The admissions control API endpoint.
         /// </summary>
         IAdmissionregistrationApi AdmissionregistrationApi { get; }

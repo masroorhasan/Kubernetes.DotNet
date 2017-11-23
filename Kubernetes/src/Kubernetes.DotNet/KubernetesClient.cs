@@ -10,11 +10,6 @@ namespace Kubernetes.DotNet
     public class KubernetesClient : IKubernetesClient
     {
         /// <summary>
-        /// The <see cref="KubernetesClientConfiguration"/>.
-        /// </summary>
-        public KubernetesClientConfiguration Configuration { get; }
-
-        /// <summary>
         /// The admissions control API endpoint.
         /// </summary>
         public IAdmissionregistrationApi AdmissionregistrationApi { get; }
@@ -100,34 +95,31 @@ namespace Kubernetes.DotNet
         public IVersionApi VersionApi { get; }
         
         /// <summary>
-        /// The internal <see cref="KubernetesClient"/> ctr.
+        /// 
         /// </summary>
-        /// <param name="configuration">The <see cref="KubernetesClientConfiguration"/>.</param>
-        internal KubernetesClient(KubernetesClientConfiguration configuration)
+        /// <param name="apiClientConfiguration"></param>
+        internal KubernetesClient(Configuration apiClientConfiguration)
         {
-            if (null == configuration)
-                throw new ApplicationException($"Missing required argument {nameof(configuration)}");
-            this.Configuration = configuration;
-
-            // Set up the http client
-            ApiClient httpClient = new ApiClient(configuration.MasterUrl);
+            //Configuration apiClientConfiguration = new Configuration(apiClient);
+            if (null == apiClientConfiguration)
+                throw new ApplicationException($"Missing required argument {nameof(apiClientConfiguration)}");
 
             // Initialize endpoints
-            this.ApiRegistrationApi = new Apiregistration_v1beta1Api(configuration.MasterUrl);
-            this.AppsApi = new Apps_v1beta1Api(configuration.MasterUrl);
-            this.AuthenticationApi = new Authentication_v1Api(configuration.MasterUrl);
-            this.AuthorizationApi = new Authorization_v1Api(configuration.MasterUrl);
-            this.AutoscalingApi = new Autoscaling_v1Api(configuration.MasterUrl);
-            this.BatchApi = new Batch_v1Api(configuration.MasterUrl);
-            this.CertificatesApi = new Certificates_v1beta1Api(configuration.MasterUrl);
-            this.CoreApi = new Core_v1Api(configuration.MasterUrl);
-            this.ExtensionsApi = new Extensions_v1beta1Api(configuration.MasterUrl);
-            this.LogsApi = new LogsApi(configuration.MasterUrl);
-            this.NetworkingApi = new Networking_v1Api(configuration.MasterUrl);
-            this.PolicyApi = new Policy_v1beta1Api(configuration.MasterUrl);
-            this.RbacAuthorizationApi = new RbacAuthorization_v1beta1Api(configuration.MasterUrl);
-            this.StorageApi = new Storage_v1Api(configuration.MasterUrl);
-            this.VersionApi = new VersionApi(configuration.MasterUrl);
+            this.ApiRegistrationApi = new Apiregistration_v1beta1Api(apiClientConfiguration);
+            this.AppsApi = new Apps_v1beta1Api(apiClientConfiguration);
+            this.AuthenticationApi = new Authentication_v1Api(apiClientConfiguration);
+            this.AuthorizationApi = new Authorization_v1Api(apiClientConfiguration);
+            this.AutoscalingApi = new Autoscaling_v1Api(apiClientConfiguration);
+            this.BatchApi = new Batch_v1Api(apiClientConfiguration);
+            this.CertificatesApi = new Certificates_v1beta1Api(apiClientConfiguration);
+            this.CoreApi = new Core_v1Api(apiClientConfiguration);
+            this.ExtensionsApi = new Extensions_v1beta1Api(apiClientConfiguration);
+            this.LogsApi = new LogsApi(apiClientConfiguration);
+            this.NetworkingApi = new Networking_v1Api(apiClientConfiguration);
+            this.PolicyApi = new Policy_v1beta1Api(apiClientConfiguration);
+            this.RbacAuthorizationApi = new RbacAuthorization_v1beta1Api(apiClientConfiguration);
+            this.StorageApi = new Storage_v1Api(apiClientConfiguration);
+            this.VersionApi = new VersionApi(apiClientConfiguration);
         }
     }
 }
