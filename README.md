@@ -10,10 +10,23 @@ Kubernetes.DotNet supports .NET 4.5+ platform.
 
 ## Auto generation
 
+### Docker
+Generate C# client using docker container. Image definition in `Scripts/Dockerfile`.
+
+#### Build image
+`docker build -t k8s-client-gen .`
+
+#### Run container
+Kubernetes API version can be specified with environment variable `K8S_BRANCH_VERSION`. Note: Map your host volume's path to source code.
+```sh
+docker run -e "K8S_BRANCH_VERSION=release-1.7" -v /path/to/code/Kubernetes:/usr/src/app/Kubernetes/ k8s-client-gen
+```
+
+### Bash script
 Generates C# client wrapper for Kubernetes API 1.7 using swagger-codegen.
 
 ```
-sh Scripts\client-gen.sh
+sh Scripts\client-gen.sh release-1.7
 ```
 
 ## Usage
