@@ -17,6 +17,9 @@ RUN apk add --update \
   && pip install urllib3 \
   && rm -rf /var/cache/apk/*
 
+# Default k8s API version
+ENV K8S_BRANCH_VERSION='release-1.7'
+
 # Copy over files and execute
 RUN mkdir -p Scripts
 ADD client-gen.sh init-config.json update-config.json Scripts/
