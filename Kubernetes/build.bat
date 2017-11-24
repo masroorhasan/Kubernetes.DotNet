@@ -24,12 +24,7 @@ REM copy packages\RestSharp.105.1.0\lib\net45\RestSharp.dll bin\RestSharp.dll
 
 REM build solution
 REM Build
-"%ProgramFiles(x86)%\MSBuild\14.0\bin\MSBuild.exe" Kubernetes.DotNet.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
-
-REM create package
-REM %nuget% pack "src\Kubernetes.DotNet\Kubernetes.DotNet.nuspec" -NoPackageAnalysis -verbosity detailed -o bin -Version %version% -p Configuration="%config%"
-
+"%ProgramFiles(x86)%\MSBuild\14.0\bin\MSBuild.exe" Kubernetes\Kubernetes.DotNet.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
 REM package
-REM %nuget% pack "src\Kubernetes.DotNet\Kubernetes.DotNet.nuspec" -NoPackageAnalysis -OutputDirectory $buildArtifactsDirectory -p Configuration="%config%"
 mkdir Build
-%nuget% pack "src\Kubernetes.DotNet\Kubernetes.DotNet.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
+%nuget% pack "Kubernetes\src\Kubernetes.DotNet\Kubernetes.DotNet.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
