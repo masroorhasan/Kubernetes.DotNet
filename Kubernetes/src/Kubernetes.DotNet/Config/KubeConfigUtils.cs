@@ -33,7 +33,7 @@ namespace Kubernetes.DotNet.Config
             FileInfo kubeConfigFileInfo = new FileInfo(kubeConfigFilePath);
 
             if (!kubeConfigFileInfo.Exists)
-                throw new Exception($"Kubernetes config file does not exist in path: ${kubeConfigFileInfo.FullName}.");
+                throw new Exception(string.Format("Kubernetes config file does not exist in path: {0}", kubeConfigFileInfo.FullName));
 
             KubeConfig config = default(KubeConfig);
             using (StreamReader reader = File.OpenText(kubeConfigFileInfo.FullName))
@@ -72,13 +72,15 @@ namespace Kubernetes.DotNet.Config
         public static X509Certificate2 GenerateClientCert(User user)
         {
             if (null == user)
-                throw new Exception($"Missing required parameter {nameof(user)}.");
+                throw new Exception(string.Format("Missing required parameter {0}.", nameof(user)));
 
-            if (!KubeConfigUtils.TryGetDataFromBase64String(user.UserData.ClientCertificateData, out byte[] clientCertData))
-                throw new Exception($"Invalid base54 {nameof(user.UserData.ClientCertificateData)} string.");
+            byte[] clientCertData = default(byte[]);
+            if (!KubeConfigUtils.TryGetDataFromBase64String(user.UserData.ClientCertificateData, out clientCertData))
+                throw new Exception(string.Format("Invalid base54 {0} string.", nameof(user.UserData.ClientCertificateData)));
 
-            if (!KubeConfigUtils.TryGetDataFromBase64String(user.UserData.ClientKeyData, out byte[] clientKeyData))
-                throw new Exception($"Invalid base64 {nameof(user.UserData.ClientKeyData)} string.");
+            byte[] clientKeyData = default(byte[]);
+            if (!KubeConfigUtils.TryGetDataFromBase64String(user.UserData.ClientKeyData, out clientKeyData))
+                throw new Exception(string.Format("Invalid base64 {0} string.", nameof(user.UserData.ClientKeyData)));
 
             // Generate RSA key
             object obj = default(object);

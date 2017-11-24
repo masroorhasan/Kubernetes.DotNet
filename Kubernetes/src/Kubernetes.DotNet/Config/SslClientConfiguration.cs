@@ -36,13 +36,13 @@ namespace Kubernetes.DotNet.Config
         public IKubernetesClient CreateClient(AuthType authType = AuthType.SSLAuth)
         {
             if (AuthType.SSLAuth != authType)
-                throw new Exception($"Invalid auth type {authType} for {nameof(SslClientConfiguration)}.");
+                throw new Exception(string.Format("Invalid auth type {0} for {1}.", authType, nameof(SslClientConfiguration)));
 
             if (null == this.ClusterUri)
-                throw new ApplicationException($"Missing required argument {nameof(this.ClusterUri)}");
+                throw new ApplicationException(string.Format("Missing required argument {0}", nameof(this.ClusterUri)));
 
             if (null == this.Certificate)
-                throw new ApplicationException($"Missing required argument {nameof(this.Certificate)}");
+                throw new ApplicationException(string.Format("Missing required argument {0}", nameof(this.Certificate)));
 
             ApiClient client = new ApiClient(this.ClusterUri.AbsoluteUri);
             client.RestClient.ClientCertificates = new X509CertificateCollection() { this.Certificate };
