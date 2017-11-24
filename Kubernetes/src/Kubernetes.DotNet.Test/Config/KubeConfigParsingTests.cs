@@ -7,34 +7,34 @@ using NUnit.Framework;
 namespace Kubernetes.DotNet.Test
 {
     /// <summary>
-    /// 
+    /// Tests parsing logic to parse YAML kube config.
     /// </summary>
     [TestFixture]
     [Category("KubeConfigParsing")]
     public class KubeConfigParsingTests
     {
         /// <summary>
-        /// 
+        /// The test kube config file.
         /// </summary>
         private static string TEST_KUBE_CONFIG = "Resources\\valid-kube-config.yml";
 
         /// <summary>
-        /// 
+        /// The test current context.
         /// </summary>
         private static string TEST_CURRENT_CONTEXT = "k8s-test-clustermgmt";
 
         /// <summary>
-        /// 
+        /// The test config server endpoint.
         /// </summary>
         private static string TEST_CONFIG_SERVER_ENDPOINT = "https://k8s-dotnet-test.region.cloudapp.azure.com";
 
         /// <summary>
-        /// 
+        /// The test config user.
         /// </summary>
         private static string TEST_CONFIG_USER = "k8s-test-clustermgmt-admin";
 
         /// <summary>
-        /// 
+        /// Tests parsing of kube config on an invalid path.
         /// </summary>
         [Test]
         public void ParseKubeConfigInvalidPath()
@@ -43,7 +43,7 @@ namespace Kubernetes.DotNet.Test
         }
 
         /// <summary>
-        /// 
+        /// Tests parsing of a valid kube config.
         /// </summary>
         [Test]
         public void ParseKubeConfigValidConfigFile()

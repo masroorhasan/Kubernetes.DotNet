@@ -45,7 +45,7 @@ The `IClientConfiguration` can be extended to implement client configurations th
 // Initialize client with user provided SSL configuration
 IKubernetesClient k8sClient = new SslClientConfiguration
 {
-    MasterUrl = new Uri("https://your-k8s-cluster.cloudapp.azure.com"),
+    ClusterUri = new Uri("https://your-k8s-cluster.cloudapp.azure.com"),
     Certificate = new X509Certificate2("path\\to\\cert.pfx", "password")
 }.CreateClient();
 ```

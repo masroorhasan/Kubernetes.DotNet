@@ -13,7 +13,7 @@ using YamlDotNet.Serialization;
 namespace Kubernetes.DotNet.Config
 {
     /// <summary>
-    /// 
+    /// Utility class for operations related to kubernetes config.
     /// </summary>
     public class KubeConfigUtils
     {
