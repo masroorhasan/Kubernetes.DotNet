@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
 Kubernetes
 
@@ -8,6 +8,7 @@ OpenAPI spec version: v1.7.10
 
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -18,6 +19,8 @@ OpenAPI spec version: v1.7.10
     <AssemblyName>Kubernetes.DotNet.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,6 +40,12 @@ OpenAPI spec version: v1.7.10
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,37 +56,433 @@ OpenAPI spec version: v1.7.10
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
     <Reference Include="Newtonsoft.Json">
-        <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-        <HintPath Condition="Exists('..\packages')">..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-        <HintPath Condition="Exists('..\..\packages')">..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-        <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp">
-        <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
-        <HintPath Condition="Exists('..\packages')">..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
-        <HintPath Condition="Exists('..\..\packages')">..\..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
-        <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-        <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-        <HintPath Condition="Exists('..\packages')">..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-        <HintPath Condition="Exists('..\..\packages')">..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-        <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('..\packages')">..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('..\..\packages')">..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs"
-             Exclude="obj\**"/>
+    <Compile Include="Api\AdmissionregistrationApiTests.cs" />
+    <Compile Include="Api\Admissionregistration_v1alpha1ApiTests.cs" />
+    <Compile Include="Api\ApiregistrationApiTests.cs" />
+    <Compile Include="Api\Apiregistration_v1beta1ApiTests.cs" />
+    <Compile Include="Api\ApisApiTests.cs" />
+    <Compile Include="Api\AppsApiTests.cs" />
+    <Compile Include="Api\Apps_v1beta1ApiTests.cs" />
+    <Compile Include="Api\AuthenticationApiTests.cs" />
+    <Compile Include="Api\Authentication_v1ApiTests.cs" />
+    <Compile Include="Api\Authentication_v1beta1ApiTests.cs" />
+    <Compile Include="Api\AuthorizationApiTests.cs" />
+    <Compile Include="Api\Authorization_v1ApiTests.cs" />
+    <Compile Include="Api\Authorization_v1beta1ApiTests.cs" />
+    <Compile Include="Api\AutoscalingApiTests.cs" />
+    <Compile Include="Api\Autoscaling_v1ApiTests.cs" />
+    <Compile Include="Api\Autoscaling_v2alpha1ApiTests.cs" />
+    <Compile Include="Api\BatchApiTests.cs" />
+    <Compile Include="Api\Batch_v1ApiTests.cs" />
+    <Compile Include="Api\Batch_v2alpha1ApiTests.cs" />
+    <Compile Include="Api\CertificatesApiTests.cs" />
+    <Compile Include="Api\Certificates_v1beta1ApiTests.cs" />
+    <Compile Include="Api\CoreApiTests.cs" />
+    <Compile Include="Api\Core_v1ApiTests.cs" />
+    <Compile Include="Api\Custom_objectsApiTests.cs" />
+    <Compile Include="Api\ExtensionsApiTests.cs" />
+    <Compile Include="Api\Extensions_v1beta1ApiTests.cs" />
+    <Compile Include="Api\LogsApiTests.cs" />
+    <Compile Include="Api\NetworkingApiTests.cs" />
+    <Compile Include="Api\Networking_v1ApiTests.cs" />
+    <Compile Include="Api\PolicyApiTests.cs" />
+    <Compile Include="Api\Policy_v1beta1ApiTests.cs" />
+    <Compile Include="Api\RbacAuthorizationApiTests.cs" />
+    <Compile Include="Api\RbacAuthorization_v1alpha1ApiTests.cs" />
+    <Compile Include="Api\RbacAuthorization_v1beta1ApiTests.cs" />
+    <Compile Include="Api\SettingsApiTests.cs" />
+    <Compile Include="Api\Settings_v1alpha1ApiTests.cs" />
+    <Compile Include="Api\StorageApiTests.cs" />
+    <Compile Include="Api\Storage_v1ApiTests.cs" />
+    <Compile Include="Api\Storage_v1beta1ApiTests.cs" />
+    <Compile Include="Api\VersionApiTests.cs" />
+    <Compile Include="Config\KubeConfigParsingTests.cs" />
+    <Compile Include="Model\AppsV1beta1DeploymentConditionTests.cs" />
+    <Compile Include="Model\AppsV1beta1DeploymentListTests.cs" />
+    <Compile Include="Model\AppsV1beta1DeploymentRollbackTests.cs" />
+    <Compile Include="Model\AppsV1beta1DeploymentSpecTests.cs" />
+    <Compile Include="Model\AppsV1beta1DeploymentStatusTests.cs" />
+    <Compile Include="Model\AppsV1beta1DeploymentStrategyTests.cs" />
+    <Compile Include="Model\AppsV1beta1DeploymentTests.cs" />
+    <Compile Include="Model\AppsV1beta1RollbackConfigTests.cs" />
+    <Compile Include="Model\AppsV1beta1RollingUpdateDeploymentTests.cs" />
+    <Compile Include="Model\AppsV1beta1ScaleSpecTests.cs" />
+    <Compile Include="Model\AppsV1beta1ScaleStatusTests.cs" />
+    <Compile Include="Model\AppsV1beta1ScaleTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1DeploymentConditionTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1DeploymentListTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1DeploymentRollbackTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1DeploymentSpecTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1DeploymentStatusTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1DeploymentStrategyTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1DeploymentTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1RollbackConfigTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1RollingUpdateDeploymentTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1ScaleSpecTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1ScaleStatusTests.cs" />
+    <Compile Include="Model\ExtensionsV1beta1ScaleTests.cs" />
+    <Compile Include="Model\RuntimeRawExtensionTests.cs" />
+    <Compile Include="Model\V1AffinityTests.cs" />
+    <Compile Include="Model\V1alpha1AdmissionHookClientConfigTests.cs" />
+    <Compile Include="Model\V1alpha1ClusterRoleBindingListTests.cs" />
+    <Compile Include="Model\V1alpha1ClusterRoleBindingTests.cs" />
+    <Compile Include="Model\V1alpha1ClusterRoleListTests.cs" />
+    <Compile Include="Model\V1alpha1ClusterRoleTests.cs" />
+    <Compile Include="Model\V1alpha1ExternalAdmissionHookConfigurationListTests.cs" />
+    <Compile Include="Model\V1alpha1ExternalAdmissionHookConfigurationTests.cs" />
+    <Compile Include="Model\V1alpha1ExternalAdmissionHookTests.cs" />
+    <Compile Include="Model\V1alpha1InitializerConfigurationListTests.cs" />
+    <Compile Include="Model\V1alpha1InitializerConfigurationTests.cs" />
+    <Compile Include="Model\V1alpha1InitializerTests.cs" />
+    <Compile Include="Model\V1alpha1PodPresetListTests.cs" />
+    <Compile Include="Model\V1alpha1PodPresetSpecTests.cs" />
+    <Compile Include="Model\V1alpha1PodPresetTests.cs" />
+    <Compile Include="Model\V1alpha1PolicyRuleTests.cs" />
+    <Compile Include="Model\V1alpha1RoleBindingListTests.cs" />
+    <Compile Include="Model\V1alpha1RoleBindingTests.cs" />
+    <Compile Include="Model\V1alpha1RoleListTests.cs" />
+    <Compile Include="Model\V1alpha1RoleRefTests.cs" />
+    <Compile Include="Model\V1alpha1RoleTests.cs" />
+    <Compile Include="Model\V1alpha1RuleTests.cs" />
+    <Compile Include="Model\V1alpha1RuleWithOperationsTests.cs" />
+    <Compile Include="Model\V1alpha1ServiceReferenceTests.cs" />
+    <Compile Include="Model\V1alpha1SubjectTests.cs" />
+    <Compile Include="Model\V1APIGroupListTests.cs" />
+    <Compile Include="Model\V1APIGroupTests.cs" />
+    <Compile Include="Model\V1APIResourceListTests.cs" />
+    <Compile Include="Model\V1APIResourceTests.cs" />
+    <Compile Include="Model\V1APIVersionsTests.cs" />
+    <Compile Include="Model\V1AttachedVolumeTests.cs" />
+    <Compile Include="Model\V1AWSElasticBlockStoreVolumeSourceTests.cs" />
+    <Compile Include="Model\V1AzureDiskVolumeSourceTests.cs" />
+    <Compile Include="Model\V1AzureFileVolumeSourceTests.cs" />
+    <Compile Include="Model\V1beta1APIServiceConditionTests.cs" />
+    <Compile Include="Model\V1beta1APIServiceListTests.cs" />
+    <Compile Include="Model\V1beta1APIServiceSpecTests.cs" />
+    <Compile Include="Model\V1beta1APIServiceStatusTests.cs" />
+    <Compile Include="Model\V1beta1APIServiceTests.cs" />
+    <Compile Include="Model\V1beta1APIVersionTests.cs" />
+    <Compile Include="Model\V1beta1CertificateSigningRequestConditionTests.cs" />
+    <Compile Include="Model\V1beta1CertificateSigningRequestListTests.cs" />
+    <Compile Include="Model\V1beta1CertificateSigningRequestSpecTests.cs" />
+    <Compile Include="Model\V1beta1CertificateSigningRequestStatusTests.cs" />
+    <Compile Include="Model\V1beta1CertificateSigningRequestTests.cs" />
+    <Compile Include="Model\V1beta1ClusterRoleBindingListTests.cs" />
+    <Compile Include="Model\V1beta1ClusterRoleBindingTests.cs" />
+    <Compile Include="Model\V1beta1ClusterRoleListTests.cs" />
+    <Compile Include="Model\V1beta1ClusterRoleTests.cs" />
+    <Compile Include="Model\V1beta1ControllerRevisionListTests.cs" />
+    <Compile Include="Model\V1beta1ControllerRevisionTests.cs" />
+    <Compile Include="Model\V1beta1DaemonSetListTests.cs" />
+    <Compile Include="Model\V1beta1DaemonSetSpecTests.cs" />
+    <Compile Include="Model\V1beta1DaemonSetStatusTests.cs" />
+    <Compile Include="Model\V1beta1DaemonSetTests.cs" />
+    <Compile Include="Model\V1beta1DaemonSetUpdateStrategyTests.cs" />
+    <Compile Include="Model\V1beta1EvictionTests.cs" />
+    <Compile Include="Model\V1beta1FSGroupStrategyOptionsTests.cs" />
+    <Compile Include="Model\V1beta1HostPortRangeTests.cs" />
+    <Compile Include="Model\V1beta1HTTPIngressPathTests.cs" />
+    <Compile Include="Model\V1beta1HTTPIngressRuleValueTests.cs" />
+    <Compile Include="Model\V1beta1IDRangeTests.cs" />
+    <Compile Include="Model\V1beta1IngressBackendTests.cs" />
+    <Compile Include="Model\V1beta1IngressListTests.cs" />
+    <Compile Include="Model\V1beta1IngressRuleTests.cs" />
+    <Compile Include="Model\V1beta1IngressSpecTests.cs" />
+    <Compile Include="Model\V1beta1IngressStatusTests.cs" />
+    <Compile Include="Model\V1beta1IngressTests.cs" />
+    <Compile Include="Model\V1beta1IngressTLSTests.cs" />
+    <Compile Include="Model\V1beta1LocalSubjectAccessReviewTests.cs" />
+    <Compile Include="Model\V1beta1NetworkPolicyIngressRuleTests.cs" />
+    <Compile Include="Model\V1beta1NetworkPolicyListTests.cs" />
+    <Compile Include="Model\V1beta1NetworkPolicyPeerTests.cs" />
+    <Compile Include="Model\V1beta1NetworkPolicyPortTests.cs" />
+    <Compile Include="Model\V1beta1NetworkPolicySpecTests.cs" />
+    <Compile Include="Model\V1beta1NetworkPolicyTests.cs" />
+    <Compile Include="Model\V1beta1NonResourceAttributesTests.cs" />
+    <Compile Include="Model\V1beta1PodDisruptionBudgetListTests.cs" />
+    <Compile Include="Model\V1beta1PodDisruptionBudgetSpecTests.cs" />
+    <Compile Include="Model\V1beta1PodDisruptionBudgetStatusTests.cs" />
+    <Compile Include="Model\V1beta1PodDisruptionBudgetTests.cs" />
+    <Compile Include="Model\V1beta1PodSecurityPolicyListTests.cs" />
+    <Compile Include="Model\V1beta1PodSecurityPolicySpecTests.cs" />
+    <Compile Include="Model\V1beta1PodSecurityPolicyTests.cs" />
+    <Compile Include="Model\V1beta1PolicyRuleTests.cs" />
+    <Compile Include="Model\V1beta1ReplicaSetConditionTests.cs" />
+    <Compile Include="Model\V1beta1ReplicaSetListTests.cs" />
+    <Compile Include="Model\V1beta1ReplicaSetSpecTests.cs" />
+    <Compile Include="Model\V1beta1ReplicaSetStatusTests.cs" />
+    <Compile Include="Model\V1beta1ReplicaSetTests.cs" />
+    <Compile Include="Model\V1beta1ResourceAttributesTests.cs" />
+    <Compile Include="Model\V1beta1RoleBindingListTests.cs" />
+    <Compile Include="Model\V1beta1RoleBindingTests.cs" />
+    <Compile Include="Model\V1beta1RoleListTests.cs" />
+    <Compile Include="Model\V1beta1RoleRefTests.cs" />
+    <Compile Include="Model\V1beta1RoleTests.cs" />
+    <Compile Include="Model\V1beta1RollingUpdateDaemonSetTests.cs" />
+    <Compile Include="Model\V1beta1RollingUpdateStatefulSetStrategyTests.cs" />
+    <Compile Include="Model\V1beta1RunAsUserStrategyOptionsTests.cs" />
+    <Compile Include="Model\V1beta1SelfSubjectAccessReviewSpecTests.cs" />
+    <Compile Include="Model\V1beta1SelfSubjectAccessReviewTests.cs" />
+    <Compile Include="Model\V1beta1SELinuxStrategyOptionsTests.cs" />
+    <Compile Include="Model\V1beta1ServiceReferenceTests.cs" />
+    <Compile Include="Model\V1beta1StatefulSetListTests.cs" />
+    <Compile Include="Model\V1beta1StatefulSetSpecTests.cs" />
+    <Compile Include="Model\V1beta1StatefulSetStatusTests.cs" />
+    <Compile Include="Model\V1beta1StatefulSetTests.cs" />
+    <Compile Include="Model\V1beta1StatefulSetUpdateStrategyTests.cs" />
+    <Compile Include="Model\V1beta1StorageClassListTests.cs" />
+    <Compile Include="Model\V1beta1StorageClassTests.cs" />
+    <Compile Include="Model\V1beta1SubjectAccessReviewSpecTests.cs" />
+    <Compile Include="Model\V1beta1SubjectAccessReviewStatusTests.cs" />
+    <Compile Include="Model\V1beta1SubjectAccessReviewTests.cs" />
+    <Compile Include="Model\V1beta1SubjectTests.cs" />
+    <Compile Include="Model\V1beta1SupplementalGroupsStrategyOptionsTests.cs" />
+    <Compile Include="Model\V1beta1ThirdPartyResourceListTests.cs" />
+    <Compile Include="Model\V1beta1ThirdPartyResourceTests.cs" />
+    <Compile Include="Model\V1beta1TokenReviewSpecTests.cs" />
+    <Compile Include="Model\V1beta1TokenReviewStatusTests.cs" />
+    <Compile Include="Model\V1beta1TokenReviewTests.cs" />
+    <Compile Include="Model\V1beta1UserInfoTests.cs" />
+    <Compile Include="Model\V1BindingTests.cs" />
+    <Compile Include="Model\V1CapabilitiesTests.cs" />
+    <Compile Include="Model\V1CephFSVolumeSourceTests.cs" />
+    <Compile Include="Model\V1CinderVolumeSourceTests.cs" />
+    <Compile Include="Model\V1ComponentConditionTests.cs" />
+    <Compile Include="Model\V1ComponentStatusListTests.cs" />
+    <Compile Include="Model\V1ComponentStatusTests.cs" />
+    <Compile Include="Model\V1ConfigMapEnvSourceTests.cs" />
+    <Compile Include="Model\V1ConfigMapKeySelectorTests.cs" />
+    <Compile Include="Model\V1ConfigMapListTests.cs" />
+    <Compile Include="Model\V1ConfigMapProjectionTests.cs" />
+    <Compile Include="Model\V1ConfigMapTests.cs" />
+    <Compile Include="Model\V1ConfigMapVolumeSourceTests.cs" />
+    <Compile Include="Model\V1ContainerImageTests.cs" />
+    <Compile Include="Model\V1ContainerPortTests.cs" />
+    <Compile Include="Model\V1ContainerStateRunningTests.cs" />
+    <Compile Include="Model\V1ContainerStateTerminatedTests.cs" />
+    <Compile Include="Model\V1ContainerStateTests.cs" />
+    <Compile Include="Model\V1ContainerStateWaitingTests.cs" />
+    <Compile Include="Model\V1ContainerStatusTests.cs" />
+    <Compile Include="Model\V1ContainerTests.cs" />
+    <Compile Include="Model\V1CrossVersionObjectReferenceTests.cs" />
+    <Compile Include="Model\V1DaemonEndpointTests.cs" />
+    <Compile Include="Model\V1DeleteOptionsTests.cs" />
+    <Compile Include="Model\V1DownwardAPIProjectionTests.cs" />
+    <Compile Include="Model\V1DownwardAPIVolumeFileTests.cs" />
+    <Compile Include="Model\V1DownwardAPIVolumeSourceTests.cs" />
+    <Compile Include="Model\V1EmptyDirVolumeSourceTests.cs" />
+    <Compile Include="Model\V1EndpointAddressTests.cs" />
+    <Compile Include="Model\V1EndpointPortTests.cs" />
+    <Compile Include="Model\V1EndpointsListTests.cs" />
+    <Compile Include="Model\V1EndpointsTests.cs" />
+    <Compile Include="Model\V1EndpointSubsetTests.cs" />
+    <Compile Include="Model\V1EnvFromSourceTests.cs" />
+    <Compile Include="Model\V1EnvVarSourceTests.cs" />
+    <Compile Include="Model\V1EnvVarTests.cs" />
+    <Compile Include="Model\V1EventListTests.cs" />
+    <Compile Include="Model\V1EventSourceTests.cs" />
+    <Compile Include="Model\V1EventTests.cs" />
+    <Compile Include="Model\V1ExecActionTests.cs" />
+    <Compile Include="Model\V1FCVolumeSourceTests.cs" />
+    <Compile Include="Model\V1FlexVolumeSourceTests.cs" />
+    <Compile Include="Model\V1FlockerVolumeSourceTests.cs" />
+    <Compile Include="Model\V1GCEPersistentDiskVolumeSourceTests.cs" />
+    <Compile Include="Model\V1GitRepoVolumeSourceTests.cs" />
+    <Compile Include="Model\V1GlusterfsVolumeSourceTests.cs" />
+    <Compile Include="Model\V1GroupVersionForDiscoveryTests.cs" />
+    <Compile Include="Model\V1HandlerTests.cs" />
+    <Compile Include="Model\V1HorizontalPodAutoscalerListTests.cs" />
+    <Compile Include="Model\V1HorizontalPodAutoscalerSpecTests.cs" />
+    <Compile Include="Model\V1HorizontalPodAutoscalerStatusTests.cs" />
+    <Compile Include="Model\V1HorizontalPodAutoscalerTests.cs" />
+    <Compile Include="Model\V1HostAliasTests.cs" />
+    <Compile Include="Model\V1HostPathVolumeSourceTests.cs" />
+    <Compile Include="Model\V1HTTPGetActionTests.cs" />
+    <Compile Include="Model\V1HTTPHeaderTests.cs" />
+    <Compile Include="Model\V1InitializersTests.cs" />
+    <Compile Include="Model\V1InitializerTests.cs" />
+    <Compile Include="Model\V1ISCSIVolumeSourceTests.cs" />
+    <Compile Include="Model\V1JobConditionTests.cs" />
+    <Compile Include="Model\V1JobListTests.cs" />
+    <Compile Include="Model\V1JobSpecTests.cs" />
+    <Compile Include="Model\V1JobStatusTests.cs" />
+    <Compile Include="Model\V1JobTests.cs" />
+    <Compile Include="Model\V1KeyToPathTests.cs" />
+    <Compile Include="Model\V1LabelSelectorRequirementTests.cs" />
+    <Compile Include="Model\V1LabelSelectorTests.cs" />
+    <Compile Include="Model\V1LifecycleTests.cs" />
+    <Compile Include="Model\V1LimitRangeItemTests.cs" />
+    <Compile Include="Model\V1LimitRangeListTests.cs" />
+    <Compile Include="Model\V1LimitRangeSpecTests.cs" />
+    <Compile Include="Model\V1LimitRangeTests.cs" />
+    <Compile Include="Model\V1ListMetaTests.cs" />
+    <Compile Include="Model\V1LoadBalancerIngressTests.cs" />
+    <Compile Include="Model\V1LoadBalancerStatusTests.cs" />
+    <Compile Include="Model\V1LocalObjectReferenceTests.cs" />
+    <Compile Include="Model\V1LocalSubjectAccessReviewTests.cs" />
+    <Compile Include="Model\V1LocalVolumeSourceTests.cs" />
+    <Compile Include="Model\V1NamespaceListTests.cs" />
+    <Compile Include="Model\V1NamespaceSpecTests.cs" />
+    <Compile Include="Model\V1NamespaceStatusTests.cs" />
+    <Compile Include="Model\V1NamespaceTests.cs" />
+    <Compile Include="Model\V1NetworkPolicyIngressRuleTests.cs" />
+    <Compile Include="Model\V1NetworkPolicyListTests.cs" />
+    <Compile Include="Model\V1NetworkPolicyPeerTests.cs" />
+    <Compile Include="Model\V1NetworkPolicyPortTests.cs" />
+    <Compile Include="Model\V1NetworkPolicySpecTests.cs" />
+    <Compile Include="Model\V1NetworkPolicyTests.cs" />
+    <Compile Include="Model\V1NFSVolumeSourceTests.cs" />
+    <Compile Include="Model\V1NodeAddressTests.cs" />
+    <Compile Include="Model\V1NodeAffinityTests.cs" />
+    <Compile Include="Model\V1NodeConditionTests.cs" />
+    <Compile Include="Model\V1NodeDaemonEndpointsTests.cs" />
+    <Compile Include="Model\V1NodeListTests.cs" />
+    <Compile Include="Model\V1NodeSelectorRequirementTests.cs" />
+    <Compile Include="Model\V1NodeSelectorTermTests.cs" />
+    <Compile Include="Model\V1NodeSelectorTests.cs" />
+    <Compile Include="Model\V1NodeSpecTests.cs" />
+    <Compile Include="Model\V1NodeStatusTests.cs" />
+    <Compile Include="Model\V1NodeSystemInfoTests.cs" />
+    <Compile Include="Model\V1NodeTests.cs" />
+    <Compile Include="Model\V1NonResourceAttributesTests.cs" />
+    <Compile Include="Model\V1ObjectFieldSelectorTests.cs" />
+    <Compile Include="Model\V1ObjectMetaTests.cs" />
+    <Compile Include="Model\V1ObjectReferenceTests.cs" />
+    <Compile Include="Model\V1OwnerReferenceTests.cs" />
+    <Compile Include="Model\V1PersistentVolumeClaimListTests.cs" />
+    <Compile Include="Model\V1PersistentVolumeClaimSpecTests.cs" />
+    <Compile Include="Model\V1PersistentVolumeClaimStatusTests.cs" />
+    <Compile Include="Model\V1PersistentVolumeClaimTests.cs" />
+    <Compile Include="Model\V1PersistentVolumeClaimVolumeSourceTests.cs" />
+    <Compile Include="Model\V1PersistentVolumeListTests.cs" />
+    <Compile Include="Model\V1PersistentVolumeSpecTests.cs" />
+    <Compile Include="Model\V1PersistentVolumeStatusTests.cs" />
+    <Compile Include="Model\V1PersistentVolumeTests.cs" />
+    <Compile Include="Model\V1PhotonPersistentDiskVolumeSourceTests.cs" />
+    <Compile Include="Model\V1PodAffinityTermTests.cs" />
+    <Compile Include="Model\V1PodAffinityTests.cs" />
+    <Compile Include="Model\V1PodAntiAffinityTests.cs" />
+    <Compile Include="Model\V1PodConditionTests.cs" />
+    <Compile Include="Model\V1PodListTests.cs" />
+    <Compile Include="Model\V1PodSecurityContextTests.cs" />
+    <Compile Include="Model\V1PodSpecTests.cs" />
+    <Compile Include="Model\V1PodStatusTests.cs" />
+    <Compile Include="Model\V1PodTemplateListTests.cs" />
+    <Compile Include="Model\V1PodTemplateSpecTests.cs" />
+    <Compile Include="Model\V1PodTemplateTests.cs" />
+    <Compile Include="Model\V1PodTests.cs" />
+    <Compile Include="Model\V1PortworxVolumeSourceTests.cs" />
+    <Compile Include="Model\V1PreconditionsTests.cs" />
+    <Compile Include="Model\V1PreferredSchedulingTermTests.cs" />
+    <Compile Include="Model\V1ProbeTests.cs" />
+    <Compile Include="Model\V1ProjectedVolumeSourceTests.cs" />
+    <Compile Include="Model\V1QuobyteVolumeSourceTests.cs" />
+    <Compile Include="Model\V1RBDVolumeSourceTests.cs" />
+    <Compile Include="Model\V1ReplicationControllerConditionTests.cs" />
+    <Compile Include="Model\V1ReplicationControllerListTests.cs" />
+    <Compile Include="Model\V1ReplicationControllerSpecTests.cs" />
+    <Compile Include="Model\V1ReplicationControllerStatusTests.cs" />
+    <Compile Include="Model\V1ReplicationControllerTests.cs" />
+    <Compile Include="Model\V1ResourceAttributesTests.cs" />
+    <Compile Include="Model\V1ResourceFieldSelectorTests.cs" />
+    <Compile Include="Model\V1ResourceQuotaListTests.cs" />
+    <Compile Include="Model\V1ResourceQuotaSpecTests.cs" />
+    <Compile Include="Model\V1ResourceQuotaStatusTests.cs" />
+    <Compile Include="Model\V1ResourceQuotaTests.cs" />
+    <Compile Include="Model\V1ResourceRequirementsTests.cs" />
+    <Compile Include="Model\V1ScaleIOVolumeSourceTests.cs" />
+    <Compile Include="Model\V1ScaleSpecTests.cs" />
+    <Compile Include="Model\V1ScaleStatusTests.cs" />
+    <Compile Include="Model\V1ScaleTests.cs" />
+    <Compile Include="Model\V1SecretEnvSourceTests.cs" />
+    <Compile Include="Model\V1SecretKeySelectorTests.cs" />
+    <Compile Include="Model\V1SecretListTests.cs" />
+    <Compile Include="Model\V1SecretProjectionTests.cs" />
+    <Compile Include="Model\V1SecretTests.cs" />
+    <Compile Include="Model\V1SecretVolumeSourceTests.cs" />
+    <Compile Include="Model\V1SecurityContextTests.cs" />
+    <Compile Include="Model\V1SelfSubjectAccessReviewSpecTests.cs" />
+    <Compile Include="Model\V1SelfSubjectAccessReviewTests.cs" />
+    <Compile Include="Model\V1SELinuxOptionsTests.cs" />
+    <Compile Include="Model\V1ServerAddressByClientCIDRTests.cs" />
+    <Compile Include="Model\V1ServiceAccountListTests.cs" />
+    <Compile Include="Model\V1ServiceAccountTests.cs" />
+    <Compile Include="Model\V1ServiceListTests.cs" />
+    <Compile Include="Model\V1ServicePortTests.cs" />
+    <Compile Include="Model\V1ServiceSpecTests.cs" />
+    <Compile Include="Model\V1ServiceStatusTests.cs" />
+    <Compile Include="Model\V1ServiceTests.cs" />
+    <Compile Include="Model\V1StatusCauseTests.cs" />
+    <Compile Include="Model\V1StatusDetailsTests.cs" />
+    <Compile Include="Model\V1StatusTests.cs" />
+    <Compile Include="Model\V1StorageClassListTests.cs" />
+    <Compile Include="Model\V1StorageClassTests.cs" />
+    <Compile Include="Model\V1StorageOSPersistentVolumeSourceTests.cs" />
+    <Compile Include="Model\V1StorageOSVolumeSourceTests.cs" />
+    <Compile Include="Model\V1SubjectAccessReviewSpecTests.cs" />
+    <Compile Include="Model\V1SubjectAccessReviewStatusTests.cs" />
+    <Compile Include="Model\V1SubjectAccessReviewTests.cs" />
+    <Compile Include="Model\V1TaintTests.cs" />
+    <Compile Include="Model\V1TCPSocketActionTests.cs" />
+    <Compile Include="Model\V1TokenReviewSpecTests.cs" />
+    <Compile Include="Model\V1TokenReviewStatusTests.cs" />
+    <Compile Include="Model\V1TokenReviewTests.cs" />
+    <Compile Include="Model\V1TolerationTests.cs" />
+    <Compile Include="Model\V1UserInfoTests.cs" />
+    <Compile Include="Model\V1VolumeMountTests.cs" />
+    <Compile Include="Model\V1VolumeProjectionTests.cs" />
+    <Compile Include="Model\V1VolumeTests.cs" />
+    <Compile Include="Model\V1VsphereVirtualDiskVolumeSourceTests.cs" />
+    <Compile Include="Model\V1WatchEventTests.cs" />
+    <Compile Include="Model\V1WeightedPodAffinityTermTests.cs" />
+    <Compile Include="Model\V2alpha1CronJobListTests.cs" />
+    <Compile Include="Model\V2alpha1CronJobSpecTests.cs" />
+    <Compile Include="Model\V2alpha1CronJobStatusTests.cs" />
+    <Compile Include="Model\V2alpha1CronJobTests.cs" />
+    <Compile Include="Model\V2alpha1CrossVersionObjectReferenceTests.cs" />
+    <Compile Include="Model\V2alpha1HorizontalPodAutoscalerConditionTests.cs" />
+    <Compile Include="Model\V2alpha1HorizontalPodAutoscalerListTests.cs" />
+    <Compile Include="Model\V2alpha1HorizontalPodAutoscalerSpecTests.cs" />
+    <Compile Include="Model\V2alpha1HorizontalPodAutoscalerStatusTests.cs" />
+    <Compile Include="Model\V2alpha1HorizontalPodAutoscalerTests.cs" />
+    <Compile Include="Model\V2alpha1JobTemplateSpecTests.cs" />
+    <Compile Include="Model\V2alpha1MetricSpecTests.cs" />
+    <Compile Include="Model\V2alpha1MetricStatusTests.cs" />
+    <Compile Include="Model\V2alpha1ObjectMetricSourceTests.cs" />
+    <Compile Include="Model\V2alpha1ObjectMetricStatusTests.cs" />
+    <Compile Include="Model\V2alpha1PodsMetricSourceTests.cs" />
+    <Compile Include="Model\V2alpha1PodsMetricStatusTests.cs" />
+    <Compile Include="Model\V2alpha1ResourceMetricSourceTests.cs" />
+    <Compile Include="Model\V2alpha1ResourceMetricStatusTests.cs" />
+    <Compile Include="Model\VersionInfoTests.cs" />
+    <None Include="Resources\valid-kube-config.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-      <None Include="packages.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-      <ProjectReference Include="..\Kubernetes.DotNet\Kubernetes.DotNet.csproj">
-          <Project>{C6BA8A47-6ECB-47E3-A0AF-93B003A2FFE5}</Project>
-          <Name>Kubernetes.DotNet</Name>
-      </ProjectReference>
+    <ProjectReference Include="..\Kubernetes.DotNet\Kubernetes.DotNet.csproj">
+      <Project>{C6BA8A47-6ECB-47E3-A0AF-93B003A2FFE5}</Project>
+      <Name>Kubernetes.DotNet</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.visualstudio.2.3.1\build\net20\xunit.runner.visualstudio.props'))" />
+  </Target>
 </Project>
-

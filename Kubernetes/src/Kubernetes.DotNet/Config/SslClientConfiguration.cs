@@ -11,9 +11,9 @@ namespace Kubernetes.DotNet.Config
     {
         #region SSL_AUTH
         /// <summary>
-        /// The master Url.
+        /// The cluster uri.
         /// </summary>
-        public Uri MasterUrl { get; set; }
+        public Uri ClusterUri { get; set; }
 
         /// <summary>
         /// The client certificate.
@@ -38,13 +38,13 @@ namespace Kubernetes.DotNet.Config
             if (AuthType.SSLAuth != authType)
                 throw new Exception($"Invalid auth type {authType} for {nameof(SslClientConfiguration)}.");
 
-            if (null == this.MasterUrl)
-                throw new ApplicationException($"Missing required argument {nameof(this.MasterUrl)}");
+            if (null == this.ClusterUri)
+                throw new ApplicationException($"Missing required argument {nameof(this.ClusterUri)}");
 
             if (null == this.Certificate)
                 throw new ApplicationException($"Missing required argument {nameof(this.Certificate)}");
 
-            ApiClient client = new ApiClient(this.MasterUrl.AbsoluteUri);
+            ApiClient client = new ApiClient(this.ClusterUri.AbsoluteUri);
             client.RestClient.ClientCertificates = new X509CertificateCollection() { this.Certificate };
             return new KubernetesClient(new Configuration(client));
         }
