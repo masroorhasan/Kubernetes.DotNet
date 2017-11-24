@@ -74,10 +74,12 @@ namespace Kubernetes.DotNet.Config
             if (null == user)
                 throw new Exception(string.Format("Missing required parameter {0}.", nameof(user)));
 
-            if (!KubeConfigUtils.TryGetDataFromBase64String(user.UserData.ClientCertificateData, out byte[] clientCertData))
+            byte[] clientCertData = default(byte[]);
+            if (!KubeConfigUtils.TryGetDataFromBase64String(user.UserData.ClientCertificateData, out clientCertData))
                 throw new Exception(string.Format("Invalid base54 {0} string.", nameof(user.UserData.ClientCertificateData)));
 
-            if (!KubeConfigUtils.TryGetDataFromBase64String(user.UserData.ClientKeyData, out byte[] clientKeyData))
+            byte[] clientKeyData = default(byte[]);
+            if (!KubeConfigUtils.TryGetDataFromBase64String(user.UserData.ClientKeyData, out clientKeyData))
                 throw new Exception(string.Format("Invalid base64 {0} string.", nameof(user.UserData.ClientKeyData)));
 
             // Generate RSA key

@@ -30,12 +30,16 @@ namespace Kubernetes.DotNet.Config
         /// <returns>Instance of <see cref="IKubernetesClient"/>.</returns>
         public IKubernetesClient CreateClient(AuthType authType)
         {
-            // Parse from kube config file
+            // Parse kube config from path
             KubeConfig kubeConfigFile = KubeConfigUtils.ParseKubeConfig(this.kubeConfigFilePath);
-            if (!KubeConfigUtils.TryGetCurrentContext(kubeConfigFile, out Cluster cluster, out User user))
+
+            // Get current context from kube config
+            Cluster cluster = default(Cluster);
+            User user = default(User);
+            if (!KubeConfigUtils.TryGetCurrentContext(kubeConfigFile, out cluster, out user))
                 throw new ApplicationException("Invalid config in %USERPROFILE%\\.kube\\config.");
 
-            // Build API client
+            // Build client
             ApiClient client = new ApiClient(cluster.ClusterData.Server);
             switch (authType)
             {
