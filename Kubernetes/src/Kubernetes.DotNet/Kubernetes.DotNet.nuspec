@@ -6,7 +6,7 @@
         <title>Kubernetes.DotNet</title>
 
         <!-- The package version number that is used when resolving dependencies -->
-        <version>0.70</version>
+        <version>0.7.0</version>
 
         <!-- Authors contain text that appears directly on the gallery -->
         <authors>Masroor Hasan</authors>
@@ -14,6 +14,7 @@
         <!-- Owners are typically nuget.org identities that allow gallery
              users to earily find other packages by the same owners.  -->
         <owners>Masroor Hasan</owners>
+        <licenseUrl>https://github.com/masroorhasan/Kubernetes.DotNet/blob/master/LICENSE</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <developmentDependency>false</developmentDependency>
 
