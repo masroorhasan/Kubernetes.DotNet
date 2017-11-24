@@ -102,7 +102,7 @@ namespace Kubernetes.DotNet
         {
             //Configuration apiClientConfiguration = new Configuration(apiClient);
             if (null == apiClientConfiguration)
-                throw new ApplicationException($"Missing required argument {nameof(apiClientConfiguration)}");
+                throw new ApplicationException(string.Format("Missing required argument {0})", nameof(apiClientConfiguration)));
 
             // Initialize endpoints
             this.ApiRegistrationApi = new Apiregistration_v1beta1Api(apiClientConfiguration);
