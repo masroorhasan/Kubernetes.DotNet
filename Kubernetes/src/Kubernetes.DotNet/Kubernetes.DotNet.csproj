@@ -114,6 +114,7 @@ OpenAPI spec version: v1.7.10
     <Compile Include="Client\IApiAccessor.cs" />
     <Compile Include="Client\SwaggerDateConverter.cs" />
     <Compile Include="Config\AuthType.cs" />
+    <Compile Include="Config\KubeConfigUtils.cs" />
     <Compile Include="Config\SslClientConfiguration.cs" />
     <Compile Include="Config\KubeConfig.cs" />
     <Compile Include="Config\IClientConfiguration.cs" />
