@@ -59,8 +59,8 @@ namespace Kubernetes.DotNet.Test
             Assert.AreEqual("v1", kubeConfig.ApiVersion);
             Assert.AreEqual("Config", kubeConfig.Kind);
             Assert.AreEqual(KubeConfigParsingTests.TEST_CURRENT_CONTEXT, kubeConfig.CurrentContext);
-            Assert.AreEqual(KubeConfigParsingTests.TEST_CONFIG_SERVER_ENDPOINT, kubeConfig.Clusters?.FirstOrDefault().ClusterData.Server);
-            Assert.AreEqual(KubeConfigParsingTests.TEST_CONFIG_USER, kubeConfig.Users?.FirstOrDefault().Name);
+            Assert.AreEqual(KubeConfigParsingTests.TEST_CONFIG_SERVER_ENDPOINT, kubeConfig.Clusters.FirstOrDefault().ClusterData.Server);
+            Assert.AreEqual(KubeConfigParsingTests.TEST_CONFIG_USER, kubeConfig.Users.FirstOrDefault().Name);
         }
     }
 }
