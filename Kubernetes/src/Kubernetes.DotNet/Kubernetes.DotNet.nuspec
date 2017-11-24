@@ -2,37 +2,39 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <!-- The identifier that must be unique within the hosting gallery -->
-        <id>$id$</id>
-        <title>Swagger Library</title>
+        <id>Kubernetes.DotNet</id>
+        <title>Kubernetes.DotNet</title>
 
         <!-- The package version number that is used when resolving dependencies -->
-        <version>$version$</version>
+        <version>0.70</version>
 
         <!-- Authors contain text that appears directly on the gallery -->
-        <authors>$author$</authors>
+        <authors>Masroor Hasan</authors>
 
         <!-- Owners are typically nuget.org identities that allow gallery
              users to earily find other packages by the same owners.  -->
-        <owners>$author$</owners>
+        <owners>Masroor Hasan</owners>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <developmentDependency>false</developmentDependency>
 
         <!-- The description can be used in package manager UI. Note that the
              nuget.org gallery uses information you add in the portal. -->
-        <description>A library generated from a Swagger doc</description>
+        <description>Kubernetes C# client library.</description>
 
         <!-- Dependencies are automatically installed when the package is installed -->
         <dependencies>
 
             <dependency id="NewtonSoft.Json" version="10.0.3" />
             <dependency id="RestSharp" version="105.1.0" />
+            <dependency id="BouncyCastle" version="1.8.1" />
+            <dependency id="YamlDotNet" version="4.2.2" />
 
         </dependencies>
     </metadata>
     <files>
 
         <!-- A readme.txt will be displayed when the package is installed -->
-        <file src="..\..\README.md" target="" />
+        <file src="..\..\..\..\README.md" target="" />
         <file src="..\..\docs\**\*.*" target="docs" />
 
     </files>
