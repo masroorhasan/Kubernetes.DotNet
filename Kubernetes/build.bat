@@ -10,7 +10,7 @@ if not "%PackageVersion%" == "" (
 )
 
 REM Package restore
-call %NuGet% restore Kubernetes\src\Kubernetes.DotNet\packages.config -OutputDirectory %cd%\packages -NonInteractive
+call %NuGet% restore Kubernetes\src\Kubernetes.DotNet\packages.config -OutputDirectory Kubernetes\packages -NonInteractive
 REM call %NuGet% restore GoogleAnalyticsTracker.WP7\packages.config -OutputDirectory %cd%\packages -NonInteractive
 
 REM Build
