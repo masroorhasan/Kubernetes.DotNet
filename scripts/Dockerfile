@@ -21,6 +21,6 @@ RUN apk add --update \
 ENV K8S_BRANCH_VERSION='release-1.7'
 
 # Copy over files and execute
-RUN mkdir -p Scripts
-ADD client-gen.sh init-config.json update-config.json Scripts/
-CMD ["sh", "Scripts/client-gen.sh"]
+RUN mkdir -p scripts gen
+ADD client-gen.sh init-config.json update-config.json scripts/
+CMD ["sh", "scripts/client-gen.sh"]

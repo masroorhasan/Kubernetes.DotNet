@@ -3,6 +3,7 @@
     "packageVersion": "1.0.0",
     "packageGuid": "cdf019d9-8d7a-41ba-b45d-0c08b87959ff", 
     "targetFramework": "v4.5",
+    "optionalProjectFile" : false,
     "sortParamsByRequiredFlag": true,
     "optionalMethodArgument": true
 }
