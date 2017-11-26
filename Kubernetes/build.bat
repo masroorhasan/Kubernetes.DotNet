@@ -11,7 +11,7 @@ if not "%PackageVersion%" == "" (
 
 REM Package restore
 call %NuGet% restore Kubernetes\src\Kubernetes.DotNet\packages.config -OutputDirectory Kubernetes\packages -NonInteractive
-REM call %NuGet% restore GoogleAnalyticsTracker.WP7\packages.config -OutputDirectory %cd%\packages -NonInteractive
+call %NuGet% restore Kubernetes\src\Kubernetes.DotNet.Test\packages.config -OutputDirectory Kubernetes\packages -NonInteractive
 
 REM Build
 "%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" Kubernetes\Kubernetes.DotNet.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
