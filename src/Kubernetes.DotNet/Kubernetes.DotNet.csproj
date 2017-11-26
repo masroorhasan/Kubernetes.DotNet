@@ -473,10 +473,12 @@ OpenAPI spec version: v1.7.10
     <Compile Include="Model\V2alpha1ResourceMetricSource.cs" />
     <Compile Include="Model\V2alpha1ResourceMetricStatus.cs" />
     <Compile Include="Model\VersionInfo.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
