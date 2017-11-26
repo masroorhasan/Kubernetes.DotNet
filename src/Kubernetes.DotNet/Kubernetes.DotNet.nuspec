@@ -13,4 +13,7 @@
     <copyright>Copyright 2017</copyright>
     <tags>Kubernetes .NET API SDK</tags>
   </metadata>
+  <files>
+    <file src="bin\$configuration$\Kubernetes.DotNet.dll" target="lib\net45\" />
+  </files>
 </package>
