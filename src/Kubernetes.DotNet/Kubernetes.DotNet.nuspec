@@ -7,13 +7,13 @@
     <authors>Masroor Hasan</authors>
     <owners>Masroor Hasan</owners>
     <licenseUrl>https://github.com/masroorhasan/Kubernetes.DotNet/blob/master/LICENSE</licenseUrl>
-    <projectUrl>hhttps://github.com/masroorhasan/Kubernetes.DotNet</projectUrl>
+    <projectUrl>https://github.com/masroorhasan/Kubernetes.DotNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Kubernetes C# client library.</description>
     <copyright>Copyright 2017</copyright>
     <tags>Kubernetes .NET API SDK</tags>
   </metadata>
   <files>
-    <file src="bin\$configuration$\Kubernetes.DotNet.dll" target="lib\net45\" />
+    <file src="bin\$configuration$\Kubernetes.DotNet.dll" target="lib\net45" />
   </files>
 </package>
