@@ -1,4 +1,5 @@
-# Kubernetes.DotNet
+# Kubernetes.DotNet  [!Build Status](https://www.myget.org/BuildSource/Badge/kubernetes-dotnet?identifier=6b97d3b8-a941-4089-91ac-ed7ef3db2191)](https://www.myget.org/) 
+
 The C# client SDK for Kubernetes API spec on .NET 4.5+ platform.
 
 ## Dependencies
@@ -58,7 +59,8 @@ foreach (V1Pod pod in podList.Items)
 ```
 
 **Create a Pod**
-An example creating an IIS Pod on `default` namespace.
+An example creating an IIS Pod on `default` namespace. 
+
 ```csharp
 k8sClient.CoreApi.CreateNamespacedPod(
     "default",
