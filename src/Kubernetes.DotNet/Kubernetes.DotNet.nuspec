@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Kubernetes.DotNet</id>
-    <version>0.7.0</version>
+    <version>1.0.7</version>
     <title>Kubernetes.DotNet</title>
     <authors>Masroor Hasan</authors>
     <owners>Masroor Hasan</owners>
@@ -10,8 +10,7 @@
     <projectUrl>hhttps://github.com/masroorhasan/Kubernetes.DotNet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Kubernetes C# client library.</description>
-    <!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>-->
     <copyright>Copyright 2017</copyright>
-    <tags>kubernetes</tags>
+    <tags>Kubernetes .NET API SDK</tags>
   </metadata>
 </package>

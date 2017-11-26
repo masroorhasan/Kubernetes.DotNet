@@ -56,3 +56,22 @@ V1PodList podList = k8sClient.CoreApi.ListNamespacedPod("default");
 foreach (V1Pod pod in podList.Items)
     Console.WriteLine($"Pod name={pod.Metadata.Name}, object={pod.ToString()}");
 ```
+
+**Create a Pod**
+An example creating an IIS Pod on `default` namespace.
+```csharp
+k8sClient.CoreApi.CreateNamespacedPod(
+    "default",
+    new V1Pod(
+        Metadata: new V1ObjectMeta(Name: "iis-example"),
+        Spec: new V1PodSpec(
+            Containers: new List<V1Container>
+            {
+                new V1Container(
+                    Image: "microsoft/iis:nanoserver", 
+                    Name: "iis", 
+                    Ports: new List<V1ContainerPort> { new V1ContainerPort(ContainerPort: 80) })
+            })
+        )
+    );
+```
