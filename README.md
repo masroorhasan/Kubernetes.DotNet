@@ -1,4 +1,6 @@
-# Kubernetes.DotNet  [!Build Status](https://www.myget.org/BuildSource/Badge/kubernetes-dotnet?identifier=6b97d3b8-a941-4089-91ac-ed7ef3db2191)](https://www.myget.org/) 
+# Kubernetes.DotNet
+[![kubernetes-dotnet MyGet Build Status](https://www.myget.org/BuildSource/Badge/kubernetes-dotnet?identifier=6b97d3b8-a941-4089-91ac-ed7ef3db2191)](https://www.myget.org/)
+
 
 The C# client SDK for Kubernetes API spec on .NET 4.5+ platform.
 
