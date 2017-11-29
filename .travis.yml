@@ -10,6 +10,6 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script: chmod +x ./deploy.sh $MAJOR_VERSION_NUMBER $MINOR_VERSION_NUMBER $TRAVIS_BUILD_NUMBER $NUGET_API_KEY
+  script: chmod +x ./deploy.sh
   on:
     branch: master
