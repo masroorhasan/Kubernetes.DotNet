@@ -18,10 +18,10 @@ RUN apk add --update \
   && rm -rf /var/cache/apk/*
 
 # Default k8s API version
-ENV K8S_BRANCH_VERSION='release-1.7'
+ENV K8S_BRANCH_VERSION=''
 ENV GEN_OP_TYPE=''
 
 # Copy over files and execute
 RUN mkdir -p scripts gen
-ADD client-gen.sh init-config.json update-config.json scripts/
+ADD client-gen.sh init-config.json scripts/
 CMD ["sh", "scripts/client-gen.sh"]

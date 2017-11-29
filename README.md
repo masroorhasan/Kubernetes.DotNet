@@ -1,5 +1,5 @@
 # Kubernetes.DotNet
-[![kubernetes-dotnet MyGet Build Status](https://www.myget.org/BuildSource/Badge/kubernetes-dotnet?identifier=6b97d3b8-a941-4089-91ac-ed7ef3db2191)](https://www.myget.org/)
+[![Build Status](https://travis-ci.org/masroorhasan/Kubernetes.DotNet.svg?branch=master)](https://travis-ci.org/masroorhasan/Kubernetes.DotNet)
 
 
 The C# client SDK for Kubernetes API spec on .NET 4.5+ platform.
@@ -14,7 +14,9 @@ The C# client SDK for Kubernetes API spec on .NET 4.5+ platform.
 Generate C# client using docker container. Image definition in `Scripts/Dockerfile`.
 
 ### Build image
-`docker build -t k8s-client-gen .`
+```sh
+docker build -t k8s-client-gen .
+```
 
 * `K8S_BRANCH_VERSION`: Kubernetes API version, i.e. "release-1.7".
 * `GEN_OP_TYPE`: Type of code gen operation, i.e. "create" or "update".
@@ -60,8 +62,7 @@ foreach (V1Pod pod in podList.Items)
     Console.WriteLine($"Pod name={pod.Metadata.Name}, object={pod.ToString()}");
 ```
 
-**Create a Pod**
-An example creating an IIS Pod on `default` namespace. 
+**Create a Pod** 
 
 ```csharp
 k8sClient.CoreApi.CreateNamespacedPod(
