@@ -1,3 +1,5 @@
+#!/bin/sh
+
 MajorVersion=$1
 MinorVersion=$2
 BuildVersion=$3
