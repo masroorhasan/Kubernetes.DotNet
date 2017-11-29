@@ -7,6 +7,6 @@ install:
 script:
   - xbuild /p:Configuration=Release Kubernetes.DotNet.sln
   - mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./src/Kubernetes.DotNet.Test/bin/Release/Kubernetes.DotNet.Test.dll
-  - mono nuget.exe pack ./src/Kubernetes.DotNet/Kubernetes.DotNet.nuspec -Configuration Release -Version $MAJOR_VERSION_NUMBER.$MINOR_VERSION_NUMBER.$TRAVIS_BUILD_NUMBER
+  - mono nuget.exe pack ./src/Kubernetes.DotNet/Kubernetes.DotNet.nuspec -Version $MAJOR_VERSION_NUMBER.$MINOR_VERSION_NUMBER.$TRAVIS_BUILD_NUMBER -p Configuration=Release -verbosity detailed
 #   - mono nuget.exe setApiKey $NUGET_API_KEY -Source https://www.nuget.org -Verbosity quiet
 #   - mono nuget.exe push <Project Name>.$MAJOR_VERSION_NUMBER.$MINOR_VERSION_NUMBER.$TRAVIS_BUILD_NUMBER.nupkg -Source https://www.nuget.org/api/v2/package  
