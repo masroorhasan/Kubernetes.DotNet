@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Kubernetes.DotNet</id>
-    <version>1.0.7</version>
+    <version>$version$</version>
     <title>Kubernetes.DotNet</title>
     <authors>Masroor Hasan</authors>
     <owners>Masroor Hasan</owners>

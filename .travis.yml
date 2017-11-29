@@ -1,0 +1,12 @@
+language: csharp
+solution: Kubernetes.DotNet.sln
+install:
+  - curl -L -o nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+  - mono nuget.exe restore Kubernetes.DotNet.sln
+  - mono nuget.exe install NUnit.Runners -Version 3.6.1 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release Kubernetes.DotNet.sln
+  - mono ./testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./src/Kubernetes.DotNet.Test/bin/Release/Kubernetes.DotNet.Test.dll
+  - mono nuget.exe pack ./src/Kubernetes.DotNet/Kubernetes.DotNet.nuspec -Configuration Release -Version $MAJOR_VERSION_NUMBER.$MINOR_VERSION_NUMBER.$TRAVIS_BUILD_NUMBER
+#   - mono nuget.exe setApiKey $NUGET_API_KEY -Source https://www.nuget.org -Verbosity quiet
+#   - mono nuget.exe push <Project Name>.$MAJOR_VERSION_NUMBER.$MINOR_VERSION_NUMBER.$TRAVIS_BUILD_NUMBER.nupkg -Source https://www.nuget.org/api/v2/package  
