@@ -14,9 +14,14 @@ namespace Kubernetes.DotNet.Test
     public class KubeConfigParsingTests
     {
         /// <summary>
+        /// The directory for all test resources.
+        /// </summary>
+        private static string TEST_RESOURCES_DIR = "Resources";
+
+        /// <summary>
         /// The test kube config file.
         /// </summary>
-        private static string TEST_KUBE_CONFIG = "Resources\\valid-kube-config.yml";
+        private static string TEST_KUBE_CONFIG = "valid-kube-config.yml";
 
         /// <summary>
         /// The test current context.
@@ -49,7 +54,8 @@ namespace Kubernetes.DotNet.Test
         public void ParseKubeConfigValidConfigFile()
         {
             string dirInfo = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            KubeConfig kubeConfig = KubeConfigUtils.ParseKubeConfig(Path.Combine(dirInfo, KubeConfigParsingTests.TEST_KUBE_CONFIG));
+            KubeConfig kubeConfig = KubeConfigUtils.ParseKubeConfig(
+                Path.Combine(Path.Combine(dirInfo, KubeConfigParsingTests.TEST_RESOURCES_DIR), KubeConfigParsingTests.TEST_KUBE_CONFIG));
 
             // Validate
             Assert.IsNotNull(kubeConfig);
