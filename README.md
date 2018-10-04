@@ -7,11 +7,17 @@ The C# client SDK for Kubernetes API spec on .NET 4.5+ platform.
 ## Usage
 
 ### Create client using kube config
-Create a client instance using configuration parsed from %USERPROFILE%\.kube\config with specified authentication type.
+Create a client instance using configuration parsed from `%USERPROFILE%\.kube\config` with specified authentication type.
 ```csharp
 // Initialize client with default kube config using SSL authentication
 IKubernetesClient k8sClient = new KubeConfigClientConfiguration().CreateClient(AuthType.SSLAuth);
 ```
+
+Create a client using custom path to `kubeconfig` file.
+```csharp
+string configPath = "path\\to\\kube\\config";
+IKubernetesClient k8sClient = new KubeConfigClientConfiguration(configPath).CreateClient(AuthType.SSLAuth);
+``` 
 
 ### Create client using custom config
 Create a client instance by extending `IClientConfiguration` for custom configuration and authentication type.
