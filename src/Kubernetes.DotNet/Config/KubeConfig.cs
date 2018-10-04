@@ -123,6 +123,12 @@ namespace Kubernetes.DotNet.Config
         /// </summary>
         [YamlMember(Alias = "user")]
         public string User { get; set; }
+
+        /// <summary>
+        /// The namespace.
+        /// </summary>
+        [YamlMember(Alias = "namespace")]
+        public string Namespace { get; set; } 
     }
 
     /// <summary>
