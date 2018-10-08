@@ -10,6 +10,6 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script: chmod +x ./deploy.sh
+  script: chmod +x ./deploy.sh && bash ./deploy.sh
   on:
     branch: master
