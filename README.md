@@ -17,7 +17,7 @@ Create a client using custom path to `kubeconfig` file.
 ```csharp
 string configPath = "path\\to\\kube\\config";
 IKubernetesClient k8sClient = new KubeConfigClientConfiguration(configPath).CreateClient(AuthType.SSLAuth);
-``` 
+```
 
 ### Create client using custom config
 Create a client instance by extending `IClientConfiguration` for custom configuration and authentication type.
@@ -31,9 +31,7 @@ IKubernetesClient k8sClient = new SslClientConfiguration
 ```
 
 
-### Pods
-
-**Fetch all Pods** 
+### List all Pods in Namespace
 
 ```csharp
 V1PodList podList = k8sClient.CoreApi.ListNamespacedPod("default");
@@ -41,7 +39,7 @@ foreach (V1Pod pod in podList.Items)
     Console.WriteLine($"Pod name={pod.Metadata.Name}, object={pod.ToString()}");
 ```
 
-**Create a Pod** 
+### Create a Pod in Namespace
 
 ```csharp
 k8sClient.CoreApi.CreateNamespacedPod(
@@ -52,8 +50,8 @@ k8sClient.CoreApi.CreateNamespacedPod(
             Containers: new List<V1Container>
             {
                 new V1Container(
-                    Image: "microsoft/iis:nanoserver", 
-                    Name: "iis", 
+                    Image: "microsoft/iis:nanoserver",
+                    Name: "iis",
                     Ports: new List<V1ContainerPort> { new V1ContainerPort(ContainerPort: 80) })
             })
         )
@@ -62,7 +60,7 @@ k8sClient.CoreApi.CreateNamespacedPod(
 
 ## Development
 
-Generate C# client using docker container. Image definition in `Scripts/Dockerfile`.
+Generate C# client using docker container. Image definition in `scripts/Dockerfile`.
 
 ### Dependencies
 * BouncyCastle
